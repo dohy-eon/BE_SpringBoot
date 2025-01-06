@@ -1,5 +1,8 @@
 package hello.hello_spring.domain;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Member {
 
     private Long id;
