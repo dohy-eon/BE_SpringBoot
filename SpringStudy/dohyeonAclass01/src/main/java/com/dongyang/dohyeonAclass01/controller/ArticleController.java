@@ -22,6 +22,7 @@ public class ArticleController {
     @PostMapping("/articles/new")
     public String newArticleForm(ArticleForm articleForm){
         Article article = articleForm.toEntity();
+        Article savedArticle = articleRepository.save(article);
 
         return "boards/new";
     }
