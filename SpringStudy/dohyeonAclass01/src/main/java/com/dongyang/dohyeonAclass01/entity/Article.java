@@ -3,8 +3,16 @@ package com.dongyang.dohyeonAclass01.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="users")
+//@Table(name="users")
 public class Article {
+    public Article(Long id, String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+    public Article() {
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
