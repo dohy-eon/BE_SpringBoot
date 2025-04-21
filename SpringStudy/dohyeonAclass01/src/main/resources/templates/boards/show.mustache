@@ -1,3 +1,15 @@
 {{>layouts/header}}
-
+<h1> 상세글 보기 </h1>
+{{#article}}
+    <form class="container">
+        <div class="mb-3">
+            <label class="form-label" for="title1">제목 (아이디: {{id}} )</label>
+            <input type="text" value="{{title}}" class="form-control" id="title" name="title" readonly>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">내용</label>
+            <textarea class="form-control" id="content" rows="3" name="content" readonly>{{content}}</textarea>
+        </div>
+    </form>
+{{/article}}
 {{>layouts/footer}}

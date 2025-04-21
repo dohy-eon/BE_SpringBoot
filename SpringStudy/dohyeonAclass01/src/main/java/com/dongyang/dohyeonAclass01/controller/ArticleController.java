@@ -22,10 +22,12 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}")
-    public String show(@PathVariable("id") Long id){
-        System.out.println("아이디 값 : "+id);
-        ArticleForm articleForm = new ArticleForm();
-        return "";
+    public String show(@PathVariable("id") Long id, Model mo){
+//        System.out.println("아이디 값 : "+id);
+//        ArticleForm articleForm = new ArticleForm();
+        Article articleEntity=articleRepository.findById(id).orElse(null);
+        mo.addAttribute("article",articleEntity);
+        return "boards/show";
     }
 
     @PostMapping("/articles/new")
