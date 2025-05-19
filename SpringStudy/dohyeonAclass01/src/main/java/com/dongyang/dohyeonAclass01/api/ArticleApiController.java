@@ -3,6 +3,7 @@ package com.dongyang.dohyeonAclass01.api;
 import com.dongyang.dohyeonAclass01.dto.ArticleForm;
 import com.dongyang.dohyeonAclass01.entity.Article;
 import com.dongyang.dohyeonAclass01.repository.ArticleRepository;
+import com.dongyang.dohyeonAclass01.service.ArticleService;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,18 +15,18 @@ import java.util.List;
 @RestController
 public class ArticleApiController {
     @Autowired
-    private ArticleRepository articleRepository;
+    private ArticleService articleService;
+
+    @GetMapping("/api/articles")
+    public List<Article> index(){
+        return articleService.index();
+    }
 
     @PostMapping("/api/articles")
     public String Create(@RequestBody ArticleForm dto){
         Article article = new Article();
         articleRepository.save(article);
         return "";
-    }
-
-    @GetMapping("/api/articles")
-    public List<Article> index(){
-        return (List<Article>) articleRepository.findAll();
     }
 
     @GetMapping("/api/articles/{id}")
