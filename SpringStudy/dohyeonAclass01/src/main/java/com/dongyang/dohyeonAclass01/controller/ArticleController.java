@@ -1,8 +1,10 @@
 package com.dongyang.dohyeonAclass01.controller;
 
 import com.dongyang.dohyeonAclass01.dto.ArticleForm;
+import com.dongyang.dohyeonAclass01.dto.CommentDto;
 import com.dongyang.dohyeonAclass01.entity.Article;
 import com.dongyang.dohyeonAclass01.repository.ArticleRepository;
+import com.dongyang.dohyeonAclass01.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ public class ArticleController {
 
     @Autowired
     ArticleRepository articleRepository;
+    @Autowired
+    private CommentService commentService;
 
     //게시글 작성
     @GetMapping("/articles/new")
@@ -31,6 +35,8 @@ public class ArticleController {
     public String show(@PathVariable("id") Long id, Model mo){
         Article articleEntity=articleRepository.findById(id).orElse(null);
         mo.addAttribute("article",articleEntity);
+        List<CommentDto> commentDtos = commentService.comments(id);
+        mo.addAttribute("commentDtos", commentDtos);
         return "boards/show";
     }
 
